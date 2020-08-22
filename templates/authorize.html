@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <h1 style="margin-top: 10%; text-align: center;">Hey {{ session['name'] }}, Do you want to authorize your account with {{ app[0][2] }}?</h1>
+    <form method="POST">
+        <button class="btn btn-success" type="submit">Authorize</button>
+    </form>
+{% endblock %}

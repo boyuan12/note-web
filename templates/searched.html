@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    {% for d in data %}
+        <div>
+            <img src="https://note-flask-app.s3-us-west-1.amazonaws.com/{{ d[0] }}" width="100px" height="100px" style="position: absolute">
+            <h3 style="margin-left: 100px;"><a href="/n/{{ d[3] }}">{{ d[1] }}</a></h3>
+            <p style="margin-left: 100px;">{{ d[2] }}</p>
+            <p style="margin-left: 100px;">By: <a href="/a/{{ d[4] }}">{{ d[5] }}</a></p>
+        </div>
+        <br>
+        <hr>
+    {% endfor %}
+{% endblock %}

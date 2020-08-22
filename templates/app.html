@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <h1>Dev Applications</h1>
+    <h3>Create Your Own Application</h3>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Application Name</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Redirect URI</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" name="uri" required>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlFile1">Logo</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image" equired>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <h3>Your Existing Applications</h3>
+    {% for app in apps %}
+        <div>
+            <img src="https://note-flask-app.s3-us-west-1.amazonaws.com/{{ app[3] }}" width="150px" height="150px" style="position: absolute">
+            <h3 style="margin-left: 150px;">App Name: {{ app[2] }}</h3>
+            <span style="margin-left: 150px;">Client ID: {{ app[4] }}</span> <br>
+            <span style="margin-left: 150px;">Client Secret: {{ app[5] }}</span> <br>
+            <span style="margin-left: 150px;">Redirect URI: {{ app[6] }}</span>
+        </div>
+    {% endfor %}
+{% endblock %}

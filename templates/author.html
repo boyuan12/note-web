@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<!-- <div class="row">
+    <div class="card" style="width: 18rem; margin-right: 50px; margin-bottom: 10px">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+</div> -->
+  <div class="row">
+    {% for note in notes %}
+      <div class="card" style="width: 18rem; margin-right: 50px; margin-bottom: 10px">
+        <img src="https://note-flask-app.s3-us-west-1.amazonaws.com/{{ note[4]}}" class="card-img-top" height="200px" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><a href="/n/{{ note[0] }}">{{ note[5] }}</a></h5>
+          <p class="card-text">{{ note[6] }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+{% endblock %}
