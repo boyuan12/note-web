@@ -9,7 +9,7 @@ import os
 
 app = Flask(__name__)
 
-app.config["SECRET_KEY"] = "abcdef"
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 
 if os.getenv("production") == True:
     engine = create_engine(os.getenv("DATABASE_URL"))
@@ -21,8 +21,8 @@ else:
     conn = sqlite3.connect("db.sqlite3", check_same_thread=False)
     c = conn.cursor()
 
-GOOGLE_CLIENT_ID = "1068519933125-1fmcao6e1kj8okj8q4ct66hpkuuhmaag.apps.googleusercontent.com"
-GOOGLE_CLIENT_SECRET = "lNP4tgrigEz_Ia1zkx-dLCUm"
+GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
+GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
 
 def validate_note(user_id, note_id):
     note = c.execute("SELECT * FROM notes WHERE note_id=:note_id", {"note_id": note_id}).fetchall()

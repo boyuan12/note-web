@@ -5,6 +5,7 @@ import random
 import boto3
 import string
 import pathlib
+import os
 
 
 def login_required(f):
@@ -24,7 +25,7 @@ def random_str(n=10):
 
 
 def upload_s3(request):
-    s3 = boto3.resource("s3", aws_access_key_id="AKIA2TCTDTIRFTTFNA5B", aws_secret_access_key="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")
+    s3 = boto3.resource("s3", aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"), aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"))
     name = random_str(10)
     s3.Bucket('note-flask-app').put_object(Key=f"{name}.{pathlib.Path(request.files['image'].filename).suffix}", Body=request.files["image"], ACL='public-read')
     return f"{name}.{pathlib.Path(request.files['image'].filename).suffix}"
