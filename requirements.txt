@@ -1,0 +1,5 @@
+SQLAlchemy
+psycopg2-binary
+requests
+termcolor
+boto3

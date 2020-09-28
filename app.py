@@ -2,6 +2,8 @@ from flask import Flask, render_template, session, request, redirect, abort, jso
 from helpers import login_required, random_str, upload_s3
 import requests
 from termcolor import colored
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
 
 import os
 
@@ -10,14 +12,17 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = "abcdef"
 
 if os.getenv("production") == True:
-    pass
+    engine = create_engine(os.getenv("DATABASE_URL"))
+    db = scoped_session(sessionmaker(bind=engine))
+    conn = db()
+    c = conn
 else:
     import sqlite3
     conn = sqlite3.connect("db.sqlite3", check_same_thread=False)
     c = conn.cursor()
 
-GOOGLE_CLIENT_ID = ""
-GOOGLE_CLIENT_SECRET = ""
+GOOGLE_CLIENT_ID = "1068519933125-1fmcao6e1kj8okj8q4ct66hpkuuhmaag.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET = "lNP4tgrigEz_Ia1zkx-dLCUm"
 
 def validate_note(user_id, note_id):
     note = c.execute("SELECT * FROM notes WHERE note_id=:note_id", {"note_id": note_id}).fetchall()
