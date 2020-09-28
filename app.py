@@ -11,7 +11,9 @@ app = Flask(__name__)
 
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 
-if os.getenv("production") == True:
+print(os.getenv("production"))
+
+if bool(os.getenv("production")) == True:
     engine = create_engine(os.getenv("DATABASE_URL"))
     db = scoped_session(sessionmaker(bind=engine))
     conn = db()
