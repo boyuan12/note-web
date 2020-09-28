@@ -3,3 +3,4 @@ psycopg2-binary
 requests
 termcolor
 boto3
+gunicorn
