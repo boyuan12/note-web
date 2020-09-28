@@ -49,7 +49,7 @@ def index():
 def login():
     if request.args.get("next"):
         session["next"] = request.args.get("next")
-    return redirect(f"https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.profile&access_type=offline&include_granted_scopes=true&response_type=code&redirect_uri=https://note-web.herokuapp.com&client_id={GOOGLE_CLIENT_ID}")
+    return redirect(f"https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.profile&access_type=offline&include_granted_scopes=true&response_type=code&redirect_uri=https://note-web.herokuapp.com/authorized&client_id={GOOGLE_CLIENT_ID}")
 
 
 @app.route("/authorized")
