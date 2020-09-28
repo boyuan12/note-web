@@ -4,3 +4,4 @@ requests
 termcolor
 boto3
 gunicorn
+Flask
