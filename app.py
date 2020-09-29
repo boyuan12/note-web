@@ -59,7 +59,7 @@ def google_authorized():
         "client_secret": GOOGLE_CLIENT_SECRET,
         "code": request.args.get("code"),
         "grant_type": "authorization_code",
-        "redirect_uri": "http://127.0.0.1:5000/authorized"
+        "redirect_uri": "https://note-web.herokuapp.com/authorized"
     })
     print(colored(r.json(), "red"))
     r = requests.get(f'https://www.googleapis.com/oauth2/v2/userinfo?access_token={r.json()["access_token"]}').json()
